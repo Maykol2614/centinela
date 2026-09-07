@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #171310;
+  background-image:
+    linear-gradient(rgba(217, 207, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 207, 184, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #efe8d8;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+::selection {
+  background: #d9491f;
+  color: #171310;
+}
