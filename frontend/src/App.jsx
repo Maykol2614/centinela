@@ -9,15 +9,15 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 const INTERVALO_ACTUALIZACION = 10000; // 10s
 
 const ZONAS_SUELO = [
-  { nombre: "Seco", desde: 0, hasta: 399, color: "#C9A45C" },
-  { nombre: "Normal", desde: 400, hasta: 700, color: "#8B92A0" },
-  { nombre: "Húmedo", desde: 701, hasta: 1023, color: "#5B8DEF" },
+  { nombre: "Húmedo", desde: 0, hasta: 600, color: "#5B8DEF" },
+  { nombre: "Normal", desde: 601, hasta: 800, color: "#8B92A0" },
+  { nombre: "Seco", desde: 801, hasta: 1023, color: "#C9A45C" },
 ];
 
 const ZONAS_GAS = [
-  { nombre: "Normal", desde: 0, hasta: 299, color: "#5B8DEF" },
-  { nombre: "Alerta", desde: 300, hasta: 600, color: "#C9A45C" },
-  { nombre: "Peligro", desde: 601, hasta: 1023, color: "#E5726B" },
+  { nombre: "Normal", desde: 0, hasta: 549, color: "#5B8DEF" },
+  { nombre: "Alerta", desde: 550, hasta: 750, color: "#C9A45C" },
+  { nombre: "Peligro", desde: 751, hasta: 1023, color: "#E5726B" },
 ];
 
 export default function App() {
@@ -121,7 +121,7 @@ export default function App() {
           datos={lecturas}
           dataKey="humedad_suelo"
           color="#5B8DEF"
-          umbral={400}
+          umbral={750}
           umbralEtiqueta="Umbral seco"
         />
         <TrendChart
@@ -129,7 +129,7 @@ export default function App() {
           datos={lecturas}
           dataKey="nivel_gas"
           color="#E5726B"
-          umbral={300}
+          umbral={550}
           umbralEtiqueta="Umbral de alerta"
         />
       </section>
