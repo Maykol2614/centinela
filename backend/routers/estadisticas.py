@@ -26,14 +26,14 @@ def obtener_estadisticas(db: Session = Depends(get_db)):
     dia_mas_humedo = schemas.DiaExtremo()
     dia_mas_seco = schemas.DiaExtremo()
 
-    # NOTA sobre la convención de "húmedo" vs "seco":
-    # Igual que en el sketch de Arduino, un valor MÁS ALTO de humedad_suelo
-    # se interpreta como suelo más húmedo, y un valor MÁS BAJO (por debajo
-    # de UMBRAL_SECO) como suelo seco. Si tu sensor está cableado al revés,
-    # solo invierte estas dos líneas (max <-> min).
+    # NOTA sobre la convención de "húmedo" vs "seco" (calibrado para el sensor real del usuario):
+    # En este sensor, un valor MÁS BAJO de humedad_suelo significa suelo más húmedo,
+    # y un valor MÁS ALTO significa suelo más seco (al revés de lo que suele asumirse
+    # por defecto). Si cambias de sensor y el comportamiento es al revés, invierte
+    # estas dos líneas (max <-> min).
     if promedios_diarios:
-        mas_humedo = max(promedios_diarios, key=lambda r: r.humedad_prom)
-        mas_seco = min(promedios_diarios, key=lambda r: r.humedad_prom)
+        mas_humedo = min(promedios_diarios, key=lambda r: r.humedad_prom)
+        mas_seco = max(promedios_diarios, key=lambda r: r.humedad_prom)
         dia_mas_humedo = schemas.DiaExtremo(
             fecha=str(mas_humedo.fecha), valor=round(mas_humedo.humedad_prom, 1)
         )
