@@ -40,3 +40,15 @@ def lectura_actual(db: Session = Depends(get_db)):
         .order_by(models.Lectura.creado_en.desc())
         .first()
     )
+
+
+@router.get("/alarmas", response_model=List[schemas.LecturaOut])
+def historial_alarmas(limit: int = 20, db: Session = Depends(get_db)):
+    """Últimas veces que la alarma estuvo activa, más recientes primero."""
+    return (
+        db.query(models.Lectura)
+        .filter(models.Lectura.alarma_activa.is_(True))
+        .order_by(models.Lectura.creado_en.desc())
+        .limit(limit)
+        .all()
+    )
