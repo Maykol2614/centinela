@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #08090b;
+  background-image:
+    linear-gradient(rgba(196, 201, 210, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 201, 210, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #e8eaed;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+::selection {
+  background: #4c82e0;
+  color: #08090b;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Esquinas tipo "mira de instrumento" — refuerzan el lenguaje de panel técnico */
+.panel-corners {
+  position: relative;
+}
+.panel-corners::before,
+.panel-corners::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.panel-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+}
+.panel-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.live-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
